@@ -221,7 +221,12 @@ impl Board {
     ///
     /// ひっくり返した分だけ `black`/`white` の数を増減させる必要がある
     fn do_flip(&mut self, piece: Piece, mut pos: Coord, dir: Coord, flip: u8) {
-        unimplemented!();
+        for _ in 0..flip {
+            pos += dir;
+            self.matrix[pos] = Some(piece);
+        }
+        *self.count_mut(piece) += flip;
+        *self.count_mut(piece.opponent()) -= flip;
     }
 
     /// 指定の色で指定の「手」を打つ
