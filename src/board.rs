@@ -48,7 +48,11 @@ impl Index<Coord> for Matrix {
     ///
     /// 座標が盤面の範囲外であった場合は None が返る。
     fn index(&self, index: Coord) -> &Self::Output {
-        unimplemented!();
+        if !self.is_in_range(index) {
+            return &None;
+        }
+        let Coord(x, y) = index;
+        &self.0[y as usize][x as usize]
     }
 }
 /// `[]=` 演算子のオーバーロード
