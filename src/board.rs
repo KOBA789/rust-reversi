@@ -156,7 +156,19 @@ impl Board {
     /// * `pos` - 石を置く位置
     /// * `dir` - ひっくり返せる石を探す方向。`DIRECTIONS` の要素のいずれかが渡される
     fn get_flip(&self, piece: Piece, mut pos: Coord, dir: Coord) -> u8 {
-        unimplemented!();
+        let me = Some(piece);
+        let mut count = 0;
+        loop {
+            pos += dir;
+            let cell = self.matrix[pos];
+            if cell == N {
+                return 0;
+            }
+            if cell == me {
+                return count;
+            }
+            count += 1;
+        }
     }
 
     /// 指定の色の石を指定の位置に置いたときの `Move` を返す
