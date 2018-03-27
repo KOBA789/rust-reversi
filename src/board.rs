@@ -175,7 +175,17 @@ impl Board {
     ///
     /// 戻り値の `Move` には8方向分の `get_flip` の結果が含まれる
     fn get_move(&self, piece: Piece, pos: Coord) -> Move {
-        unimplemented!();
+        if self.matrix[pos] != N {
+            return Move {
+                pos,
+                flips: ZERO_FLIP,
+            };
+        }
+        let mut flips = [0; 8];
+        for (dir, flip) in DIRECTIONS.iter().zip(flips.iter_mut()) {
+            *flip = self.get_flip(piece, pos, *dir);
+        }
+        Move { pos, flips }
     }
 
     /// 合法な Move のリストを返す
