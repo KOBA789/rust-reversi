@@ -231,7 +231,11 @@ impl Board {
 
     /// 指定の色で指定の「手」を打つ
     pub fn do_move(&mut self, piece: Piece, mov: &Move) {
-        unimplemented!();
+        self.matrix[mov.pos] = Some(piece);
+        for (flip, dir) in mov.flips.into_iter().zip(DIRECTIONS.iter()) {
+            self.do_flip(piece, mov.pos, *dir, *flip);
+        }
+        *self.count_mut(piece) += 1;
     }
 }
 impl fmt::Display for Board {
