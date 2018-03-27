@@ -206,7 +206,10 @@ impl Board {
 
     /// 指定の色のカウンタへのミュータブルな参照を返す
     fn count_mut(&mut self, piece: Piece) -> &mut u8 {
-        unimplemented!();
+        match piece {
+            Piece::Black => &mut self.black,
+            Piece::White => &mut self.white,
+        }
     }
 
     /// 石を指定の位置から指定の方向へ指定の数だけ指定の色にひっくり返す
