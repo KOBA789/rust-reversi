@@ -1,0 +1,8 @@
+[package]
+name = "reversi"
+version = "0.1.0"
+authors = ["Hidekazu Kobayashi <hidekazu-kobayashi@cookpad.com>"]
+
+[dependencies]
+smallvec = "0.6.0"
+rayon = "1.0"
