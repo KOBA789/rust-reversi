@@ -61,7 +61,8 @@ impl IndexMut<Coord> for Matrix {
     ///
     /// 座標が盤面の範囲外であった場合の挙動は未定義
     fn index_mut(&mut self, index: Coord) -> &mut Self::Output {
-        unimplemented!();
+        let Coord(x, y) = index;
+        &mut self.0[y as usize][x as usize]
     }
 }
 impl fmt::Display for Matrix {
