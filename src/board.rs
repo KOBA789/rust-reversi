@@ -192,7 +192,16 @@ impl Board {
     ///
     /// 盤面の左上から右下まで走査して、合法手を探し出す
     pub fn moves(&self, piece: Piece) -> Moves {
-        unimplemented!();
+        let mut moves = SmallVec::new();
+        for y in 0..self.matrix.size() {
+            for x in 0..self.matrix.size() {
+                let mov = self.get_move(piece, Coord(x as i8, y as i8));
+                if mov.is_legal() {
+                    moves.push(mov);
+                }
+            }
+        }
+        moves
     }
 
     /// 指定の色のカウンタへのミュータブルな参照を返す
