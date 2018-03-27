@@ -9,7 +9,9 @@ pub struct Coord(pub i8, pub i8);
 impl Add for Coord {
     type Output = Self;
     fn add(self, rhs: Self) -> Self::Output {
-        unimplemented!();
+        let Coord(x1, y1) = self;
+        let Coord(x2, y2) = rhs;
+        Coord(x1 + x2, y1 + y2)
     }
 }
 /// `+=` 演算子のオーバーロード
